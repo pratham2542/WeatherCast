@@ -45,6 +45,35 @@
     justify-content: center;
     height: 25%;
 }
+
+@media (max-height:750px){
+    .weather-image{
+        
+        display: none;
+        
+        height: 0%;
+        width:0%;
+    }
+    .top-bar input{
+        
+        height: 48px;
+        
+    }
+    
+    .search-icon{
+        
+        width: 48px;
+        height: 48px;
+        
+    }
+    .top-bar{
+        
+        padding-top: 30px;
+    }
+    .weather-temp{
+        margin-top: 30px;
+    }
+}
 .weather-image1{
     margin-top:15px ;
     display: flex;

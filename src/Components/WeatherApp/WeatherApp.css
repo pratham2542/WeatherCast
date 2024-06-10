@@ -67,11 +67,16 @@
         
     }
     .top-bar{
-        
         padding-top: 30px;
     }
     .weather-temp{
         margin-top: 30px;
+    }
+    .data .humidity-percent{
+        font-size: 20px;
+    }
+    .data .text{
+        font-size: 20px;
     }
 }
 .weather-image1{

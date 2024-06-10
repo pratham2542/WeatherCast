@@ -141,11 +141,13 @@ const WeatherApp = () => {
               left: "50%",
               transform: "translate(-50%, -50%)",
               width: 800,
-              // bgcolor: "background.paper",
-              bgcolor: "white",
+              maxWidth:"70%",
+              maxHeight:"50%",
+              bgcolor: "rgba(240,240,240)",
               borderRadius: "20px",
               boxShadow: 24,
               p: 4,
+              overflow:"scroll"
             }}
           >
             <div className="weather-image1">

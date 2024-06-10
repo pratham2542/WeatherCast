@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./WeatherApp.css";
 import search_icon from "../Assets/search.png";
 import clear_icon from "../Assets/clear.png";
@@ -89,7 +89,11 @@ const WeatherApp = () => {
     else setWicon(clear_icon);
   };
 
-  search("india",0);
+  useEffect(()=>{
+    search("india",0);
+  },[])
+
+  
 
 
   return (
@@ -162,7 +166,7 @@ const WeatherApp = () => {
             }}
           >
             <div className="weather-image1">
-              <img src={wicon} alt="icon" />
+              <img className="modal-weather-image" src={wicon} alt="icon" />
             </div>
             <div className="weather-temp" style={{color:"black",fontSize:"55px"}}>{temp}°C</div>
             <div className="weather-location" style={{color:"black",marginBottom:"50px"}}>{city}</div>

@@ -20,7 +20,7 @@ const WeatherApp = () => {
   const [humidity, setHumidity] = useState(0);
   const [pressure, setPressure] = useState(0);
   const [wind, setWind] = useState(0);
-  const [city, setCity] = useState(" - ");
+  const [city, setCity] = useState("India");
   const [wicon, setWicon] = useState(cloud_icon);
   const [lat, setlat] = useState(0);
   const [lon, setlon] = useState(0);
@@ -34,10 +34,18 @@ const WeatherApp = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const search = async () => {
+
+  const search = async (initialName,setCount) => {
     const element = document.getElementsByClassName("cityInput");
-    if (element[0].value === "") return 0;
-    let URL = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${API_KEY}`;
+
+    let cityName;
+    if(setCount==0){
+      cityName=initialName;
+    }else{
+      if (element[0].value === "") return 0;
+      cityName=element[0].value;
+    }
+    let URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=Metric&appid=${API_KEY}`;
     let responce = await fetch(URL);
 
     let data = await responce.json();
@@ -52,7 +60,7 @@ const WeatherApp = () => {
     setHumidity(data.main.humidity);
     setPressure(data.main.pressure);
     setWind(data.wind.speed);
-    setCity(element[0].value);
+    setCity(cityName);
 
     setlon(data.coord.lon);
     setlat(data.coord.lat);
@@ -81,6 +89,9 @@ const WeatherApp = () => {
     else setWicon(clear_icon);
   };
 
+  search("india",0);
+
+
   return (
     <div className="container">
       <div className="top-bar">
@@ -92,7 +103,7 @@ const WeatherApp = () => {
         <div
           className="search-icon"
           onClick={() => {
-            search();
+            search("",1);
           }}
         >
           <img src={search_icon} alt="$" />
@@ -142,7 +153,7 @@ const WeatherApp = () => {
               transform: "translate(-50%, -50%)",
               width: 800,
               maxWidth:"70%",
-              maxHeight:"50%",
+              maxHeight:"60%",
               bgcolor: "rgba(240,240,240)",
               borderRadius: "20px",
               boxShadow: 24,
@@ -156,7 +167,7 @@ const WeatherApp = () => {
             <div className="weather-temp" style={{color:"black",fontSize:"55px"}}>{temp}°C</div>
             <div className="weather-location" style={{color:"black",marginBottom:"50px"}}>{city}</div>
 
-            <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around",flexWrap:"wrap"}}>
+            <div className="grid-modal"style={{width:"100%"}}>
             <div className="data1">
               <div className="humidity-percent">{pressure} Pa</div>
               <div className="text1">pressure</div>
